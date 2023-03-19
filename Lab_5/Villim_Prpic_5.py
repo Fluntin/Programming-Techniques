@@ -2,22 +2,26 @@
 # 2023-03-19
 # DD100N
 
-#The program keeps track of competition. A user can add players and scores. The program saves them on a separate file and then reedds the file to get the results.
-#The program also checks for eventual errors and has the ability to print out and ordered list of results."""
+#Programmet håller reda på tävlingar. En användare kan lägga till spelare och poäng. 
+#Programmet sparar dem i en separat fil och läser sedan filen för att få resultaten. 
+#Programmet kontrollerar också eventuella fel och har möjlighet att skriva ut en ordnad lista över resultaten.
 
 import os
-
-
-
-
+# clear terminal screen
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+#--------------------------------------------------------------------
 def main():
     
     # Inparameter: None
     # Returvärde: None
     
     # Huvudprogrammet som körs när programmet startas. 
-    # Läser in tidigare resultat och loopar genom huvudmenyn.
+    # Läser in tidigare resultat och huvudmenyn.
     
+    clear_screen()
+    print("\n")
     print("Den årliga pilkastningstävlingen är i full gång!")
     resultat = read_results()  # Läs in tidigare resultat
 
@@ -36,15 +40,14 @@ def main():
             mata_in_resultat(resultat)
         elif val == "3":
             spara_resultat(resultat)
+            clear_screen()
             print("Resultattavlan är sparad. Hejdå!")
             break
         else:
             print("Felaktigt val, försök igen!")
 
-# clear terminal screen
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    
+
+ #--------------------------------------------------------------------   
 def read_results():
     
     # Inparameter: None
@@ -52,6 +55,7 @@ def read_results():
     
     # Funktion för att läsa in resultat från fil och returnera en lista av tupler med namn och poäng.
     # Om filen inte finns eller är tom så returneras en tom lista.
+    
     resultatfil = "resultat.txt"  # Filnamnet för textfilen där resultaten sparas
     try:
         with open(resultatfil, "r") as data:
@@ -59,35 +63,40 @@ def read_results():
             for line in data:
                 namn, poäng = line.strip().split(",")
                 resultat.append((namn, int(poäng)))
+                
     except FileNotFoundError:
+        #Om file resultat.txt inte existerar.
         resultat = list()
     return resultat
 
-
+#--------------------------------------------------------------------
 def write_result(resultat):
+    
     # Inparameter: resultat (en lista av tupler med namn och poäng)
     # Returvärde: None
+    
     # Funktion för att skriva ut resultattavlan sorterad efter poäng.
     
     if len(resultat) == 0:
+        clear_screen()
         print("Inga resultat hittades.")
     else:
-        #Ask if O(n) or O(n^2)?
-        for i in range(0,len(resultat)):
-            for j in range(i + 1, len(resultat)):
-                if resultat[j][1] > resultat[i][1]:
-                    resultat[i], resultat[j] = resultat[j], resultat[i]
+        resultat = sorted(resultat, key=lambda person: person[1], reverse=True)
         clear_screen()
         print("Just nu är ställningen följande:")
         for i, result in enumerate(resultat):
-            namn, poang = result
-            print(f"{i+1}. {namn} {poang} poäng")
+            namn, poäng = result
+            place=i+1
+            print(f"{place}. {namn} {poäng} poäng")
 
-
+#--------------------------------------------------------------------
 def mata_in_resultat(resultat):
+    
     # Inparameter: resultat (en lista av tupler med namn och poäng)
     # Returvärde: None
+    
     # Funktion för att mata in nya resultat och lägga till dem i resultatlistan.
+    
     clear_screen()
     namn = input("Vad heter spelaren? ")
     while True:
@@ -101,24 +110,29 @@ def mata_in_resultat(resultat):
         namn = input("Nej det namnet är upptaget, försök igen. Vad heter spelaren? ")
     while True:
         
-        poang = input("Vilken poäng fick spelaren? ")
-        if poang.isdigit() and (0 <= int(poang) <= 50):
-            resultat.append((namn, int(poang)))
-            print(f"{namn} har nu lagts till i resultatlistan med {poang} poäng!")
+        poäng = input("Vilken poäng fick spelaren? ")
+        
+        # Kontrollera att poängen är rimlig, användaren behöver dock bara mata in totalpoängen (inte poängen för varje pil).
+        if poäng.isdigit() and (0 <= int(poäng) <= 50):
+            resultat.append((namn, int(poäng)))
+            print(f"{namn} har nu lagts till i resultatlistan med {poäng} poäng!")
             break
         else:
-            poang = input("Det där var inte en rimlig poäng. Försök igen. Vilken poäng fick spelaren? ")
+            poäng = input("Det där var inte en rimlig poäng. Försök igen. Vilken poäng fick spelaren? ")
 
-
+#--------------------------------------------------------------------
 def spara_resultat(resultat):
+    
     # Inparameter: resultat (en lista av tupler med namn och poäng)
     # Returvärde: None
+    
     # Funktion för att spara resultatlistan till filen resultatfil.
+    
     resultatfil = "resultat.txt"  # Filnamnet för textfilen där resultaten sparas
     with open(resultatfil, "w") as fil:
         for result in resultat:
-            namn, poang = result
-            fil.write(f"{namn},{poang}\n")
+            namn, poäng = result
+            fil.write(f"{namn},{poäng}\n")
 
 
 if __name__ == "__main__":
