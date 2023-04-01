@@ -60,6 +60,9 @@ class Husdjur :
         print(f"Du mattar {self.name}.")
 
 #-------------------------------------------------------------------- 
+#Denna metod heter load_husdjur() och dess syfte är att läsa in information om husdjur från en textfil, 
+#skapa objekt för varje husdjur baserat på den informationen, och returnera en lista med dessa objekt.
+
 def load_husdjur():
     #Dina husdjurs-objekt ska vara lagrade i en lista.
     husdjur_lista = list()
@@ -72,19 +75,28 @@ def load_husdjur():
                 pet_info = line.strip().split(",")
                 pet = Husdjur(pet_info[0], int(pet_info[1]), int(pet_info[2]))
                 husdjur_lista.append(pet)
-                
+    
+    #Om filen pets.txt inte kunde hittas, kommer funktionen att skriva ut ett felmeddelande och returnera en tom lista.         
     except FileNotFoundError:
-        #Om file pets.txt inte existerar.
         print("Error: File not found.")
         husdjur_lista = list()
         
     return husdjur_lista
 #--------------------------------------------------------------------
+#Denna funktion/metod heter save_husdjur() och dess syfte är att spara informationen om husdjur till en textfil.
+#Funktionen tar emot två inparametrar: file_path, som är en sträng som representerar sökvägen till textfilen, 
+#och pets, som är en lista med Husdjur-objekt som innehåller informationen som ska sparas.
+#Funktionen returnerar ingenting.
+
 def save_husdjur(file_path, pets):
     with open(file_path, "w") as file:
         for pet in pets:
             file.write(f"{pet.name},{pet.hunger},{pet.klappbehov}\n")
 #--------------------------------------------------------------------            
+#Denna metod skriver ut en lista med alla husdjur som finns i en given lista av Husdjur-objekt.
+#Funktionen tar emot en inparameter: pets, som är en lista med Husdjur-objekt som ska skrivas ut.
+#Funktionen returnerar ingenting.
+
 def list_husdjur(pets):
     if not pets:
         print("Inga husdjur i lista.")
@@ -93,13 +105,20 @@ def list_husdjur(pets):
         for i, pet in enumerate(pets):
             print(f"{i+1}. {pet}")
 #--------------------------------------------------------------------
+#Denna metod söker efter en viss husdjur i en given lista av Husdjur-objekt.
+
+#Funktionen tar emot två inparametrar: 
+#pets, som är en lista med Husdjur-objekt att söka igenom, 
+#name, som är en sträng som representerar namnet på husdjuret som ska sökas efter.
+
+#Funktionen returnerar antingen det sökta Husdjur-objektet eller None.
+
 def hitta_husdjur(pets, name):
     for pet in pets:
         if pet.name.lower() == name.lower():
             return pet
     return None
-#--------------------------------------------------------------------
-def main():
+
 #--------------------------------------------------------------------
 #   4. Skapa ett objekt av klassen och prova att det går att skriva ut husdjurens värden med print().
 #    print("Prova att det går att skriva ut husdjurens värden med print():")
@@ -126,11 +145,19 @@ def main():
 #    for husdjur in husdjur_lista:
 #        print(husdjur)
 #     
+
 #--------------------------------------------------------------------
+
+def main():
+    
+# Läsa in data från textfilen
     file_path = "pets.txt"
-    pets = load_husdjur()
+    husdjur_lista = load_husdjur()
     print("\n")
     print("Välkommen till PetRobo!")
+
+# Huvudloop som låter användaren interagera med programmet.
+# Loopen fortsätter att köras tills användaren väljer att avsluta programmet
 
     while True:
         print("\n")
@@ -143,24 +170,26 @@ def main():
         print("\n")
 
         if choice == "1":
-            list_husdjur(pets)
+            list_husdjur(husdjur_lista)
             
         elif choice == "2":
             name = input("Vilket djur vill du att jag letar upp? ")
-            pet = hitta_husdjur(pets, name)
-            if pet:
-                print(f"Hittade  {pet.name} under soffan, vad ska jag göra nu?")
+            husdjur = hitta_husdjur(husdjur_lista, name)
+            if husdjur:
+                print(f"Hittade  {husdjur.name} under soffan, vad ska jag göra nu?")
                 while True:
-                    print(f"1. Klappa {pet.name}")
-                    print(f"2. Mata {pet.name}")
+                    print(f"1. Klappa {husdjur.name}")
+                    print(f"2. Mata {husdjur.name}")
                     print("3. Tillbaka till huvudmenyn")
                     action = input()
                     if action == "1":
-                        print(f"Klappar {pet.name}")
-                        pet.klappa()
+                        print(f"Klappar {husdjur.name}")
+                        husdjur.klappa()
+                        print("Vad ska jag göra nu?")
                     elif action == "2":
-                        print(f"Mattar {pet.name}")
-                        pet.mata()
+                        print(f"Mattar {husdjur.name}")
+                        husdjur.mata()
+                        print("Vad ska jag göra nu?")
                     elif action == "3":
                         break
                     else:
@@ -171,7 +200,7 @@ def main():
 
         elif choice == "3":
             #Programmet ska skriva till samma textfil en gång, strax innan det att programmet avslutas.
-            save_husdjur(file_path, pets)
+            save_husdjur(file_path, husdjur_lista)
             print("Programmet avslutas. Tack för att du använder PetRobo!")
             break
         else:
