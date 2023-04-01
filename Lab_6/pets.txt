@@ -1,0 +1,4 @@
+Hegel,0,1
+Marx,100,0
+Pooper,3,3
+Selma,2,7
