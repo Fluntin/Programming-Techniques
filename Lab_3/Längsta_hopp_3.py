@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This is the third code for course DD100N written by Villim Prpic on 2022-02-27
+This is the third code for course DD100N written on 2022-02-27
 The code allows user to input names of students and values of jumps, and then use a menu 
 for some basic commands.
 """
