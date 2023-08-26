@@ -1,4 +1,3 @@
-# Villim Prpic
 # 2023-03-19
 # DD100N
 
