@@ -37,7 +37,6 @@ def kontrolleraRader(spelplan):
             
     return False
 
-
 def kontrolleraKolumner(spelplan):
     """Funktionen kontrollerar om samma symbol upptar alla tre fälten i en specifik kolumn.
     Inparameter: spelplan (matris)
@@ -50,7 +49,6 @@ def kontrolleraKolumner(spelplan):
                 return True
            
     return False
-
 
 def kontrolleraDiagonaler(spelplan):
     """Funktionen kontrollerar om samma symbol upptar alla tre fälten i var och en av diagonalerna
@@ -65,7 +63,6 @@ def kontrolleraDiagonaler(spelplan):
     else:
         return False
 
-
 def finnsVinnare(spelplan):
     """Funktionen anropar tre andra kontrollfunktioner (rad, kolumn och diagonal) och baserat på resultaten kontrollera om någon av dem utser en vinnare.
     Inparameter: spelplan (matris)
@@ -76,7 +73,6 @@ def finnsVinnare(spelplan):
         return True
     else:
         return False
-
 
 def oavgjort(spelplan):
     """Om alla fält på spelfältet har fyllts returnerar funktionen true.
@@ -89,7 +85,6 @@ def oavgjort(spelplan):
             if element ==' ':
                 return False
     return True
-
 
 def tolkaInmatning(inmatning):
     """Funktionerna översätter A B och C till siffror. Det kraschar programmet om en spelare använder en annan symbol än A,B,C
@@ -116,15 +111,12 @@ def tur ():
     """
     return random.randint(0,1)
     
-    
-
 def spela(spelarNamn1, spelarNamn2):
     """Tar in spelarnamn, randomiserar vem som går först, utser X och O till varje spelare.
     Inparameter: spelarNamn1, spelarNamn2 (string)
     Returvärde:ingen
     """
-    
-    
+
     print("Då kör vi!")
     print("Ange de koordinater du vill lägga på på formatet A1, B3 osv.")
     spelplan = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] #Tom spelplan.
@@ -135,7 +127,6 @@ def spela(spelarNamn1, spelarNamn2):
     
     while finnsVinnare(spelplan) == False:
         vemsTur = (vemsTur+1)% 2 #vemsTur ska aldrig bli 2, utan börja om igen på 0, %-är modul dvs resten vid heltals division.
-        
         
         skrivUtSpelplan(spelplan)
         
@@ -159,7 +150,6 @@ def spela(spelarNamn1, spelarNamn2):
     if not oavgjort(spelplan) or finnsVinnare(spelplan) == True:
         skrivUtSpelplan(spelplan)
         print("Grattis " + str(spelarLista[vemsTur]) + " du vann!")
-
 
 def huvudfunktion():
     """Tar in spelarnamn, randomiserar vem som går först, utser X och O till varje spelare.
