@@ -15,7 +15,6 @@ def main():
     
     # Inparameter: None
     # Returvärde: None
-    
     # Huvudprogrammet som körs när programmet startas. 
     # Läser in tidigare resultat och huvudmenyn.
     
