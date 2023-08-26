@@ -1,16 +1,7 @@
-
-
-
 """
 This is the first code for course DD100N written on 2022-01-30
 The code uses basic syntax to print out variables and constants that describe me.
-
 """
-
-
-
-
-
 NAME="Uleg"
 LASTNAME="Fluntin"
 age=27
@@ -21,15 +12,6 @@ print("Hej! My name is " + NAME , LASTNAME + " and I am", age, "old." )
 print("My shoe size is", SHOE_SIZE)
 print("The number of pets i own is:", number_of_pets , " but if i were to buy a dog then i would own" , number_of_pets+1 , "pet.")
 print("My age", age, "corresponds to:", age*365, "days." )
-
-
-
-
-
-
-
-
-
 
 """
 "Alternativ"
