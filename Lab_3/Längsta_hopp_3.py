@@ -49,4 +49,3 @@ while menuSwitch==True:
         print("Välkommen åter!")
     else:
         print("Välj ett giltigt alternativ.")
-        
