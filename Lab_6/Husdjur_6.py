@@ -28,6 +28,7 @@ def clear_screen():
 # 3. Definiera minst två metoder till (t.ex. klappa() och mata()). 
 #    Se till att dessa metoderna ändrar värdet attributen på något sätt.
 #--------------------------------------------------------------------
+
 class Husdjur :
     
     #Denna metod är en konstruktor för klassen Husdjur. Den tar emot tre inparametrar.
@@ -81,6 +82,7 @@ def load_husdjur():
         husdjur_lista = list()
         
     return husdjur_lista
+    
 #--------------------------------------------------------------------
 #Denna funktion/metod heter save_husdjur() och dess syfte är att spara informationen om husdjur till en textfil.
 #Funktionen tar emot två inparametrar: file_path, som är en sträng som representerar sökvägen till textfilen, 
