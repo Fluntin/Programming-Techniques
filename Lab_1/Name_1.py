@@ -2,7 +2,7 @@
 
 
 """
-This is the first code for course DD100N written by Villim Prpic on 2022-01-30
+This is the first code for course DD100N written on 2022-01-30
 The code uses basic syntax to print out variables and constants that describe me.
 
 """
@@ -11,8 +11,8 @@ The code uses basic syntax to print out variables and constants that describe me
 
 
 
-NAME="Villim"
-LASTNAME="Prpic"
+NAME="Uleg"
+LASTNAME="Fluntin"
 age=27
 SHOE_SIZE=46.5
 number_of_pets=0
