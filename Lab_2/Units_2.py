@@ -4,8 +4,6 @@ This is the second code for course DD100N written on 2022-02-13
 The code allows user to choose conversions from the menu or exit the program.
 """
 
-
-
 switch=0
 
 def Selection_Menu():
