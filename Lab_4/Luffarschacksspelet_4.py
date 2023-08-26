@@ -1,4 +1,3 @@
-# Namn: Villim Prpic
 # Datum: 2022-03-13
 # Kurskod: DD100N
 
